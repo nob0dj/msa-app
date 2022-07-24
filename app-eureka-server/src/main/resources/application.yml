@@ -1,0 +1,11 @@
+# app-eureka-server
+spring:
+  application:
+    name: app-eureka-server
+server:
+  port: 8761
+  
+eureka:
+  client:
+    register-with-eureka: false # 스스로를 유레카서비스에 등록하지 않는다.
+    fetch-registry: false # 레지스트린 사본을 로컬레 내려받지 않는다.
