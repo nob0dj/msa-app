@@ -1,0 +1,18 @@
+# app-client1
+spring:
+  application:
+    name: app-client2
+server:
+  port: 7003
+  
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url: 
+      defaultZone : http://${eureka.instance.hostname}:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+  
+      
