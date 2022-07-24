@@ -1,0 +1,36 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: app-gateway-server
+  cloud:
+    gateway:
+      routes:
+      - id: helloModule
+#        uri: http://localhost:8081/
+        uri: lb://app-hello-service
+        predicates:
+        - Path=/hello/**
+      - id: goodbyeModule
+#        uri: http://localhost:8082/
+        uri: lb://app-bye-service
+        predicates:
+        - Path=/bye/**
+      
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url: 
+      defaultZone : http://${eureka.instance.hostname}:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+# gateway 노출    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'gateway'
