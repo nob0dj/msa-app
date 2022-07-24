@@ -1,0 +1,16 @@
+# app-loadbalancer2
+server:
+  port: 9002
+ 
+spring:
+  application:
+    name: app-loadbalancer2
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url: 
+      defaultZone : http://${eureka.instance.hostname}:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
