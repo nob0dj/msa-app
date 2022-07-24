@@ -1,5 +1,5 @@
 server:
-  port: 9001
+  port: 9000
 
 spring:
   application:
@@ -18,7 +18,20 @@ spring:
         predicates:
         - Path=/bye/**
       
-
+      - id: helloworldModule
+#        uri: http://localhost:9001/
+        uri: lb://app-loadbalancer
+        predicates:
+        - Path=/helloworld
+        filters:
+        - RewritePath=/helloworld, /
+      - id: byebyeworldModule
+#        uri: http://localhost:9002/
+        uri: lb://app-loadbalancer2
+        predicates:
+        - Path=/byebyeworld
+        filters:
+        - RewritePath=/byebyeworld, /
 eureka:
   instance:
     hostname: localhost
