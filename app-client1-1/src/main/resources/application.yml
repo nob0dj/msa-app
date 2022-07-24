@@ -1,0 +1,18 @@
+# app-client1-1
+spring:
+  application:
+    name: app-client1
+server:
+  port: 7002
+  
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true # 서비스 이름 대신 서비스 ip주소 등록
+  client:
+    service-url: 
+      defaultZone : http://${eureka.instance.hostname}:8761/eureka
+    register-with-eureka: true # 유레카 서버에 등록
+    fetch-registry: true # 레지스트리 사본을 로컬에 내려받기
+  
+      
